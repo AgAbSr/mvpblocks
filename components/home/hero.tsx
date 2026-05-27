@@ -53,6 +53,13 @@ const CARD_CONFIGURATIONS = [
   },
 ] as const;
 
+// Low-priority hints for decorative images. Passed as a spread because next/image
+// types do not list fetchPriority but the underlying <img> accepts it.
+const DECORATIVE_HINTS = {
+  loading: 'lazy' as const,
+  fetchPriority: 'low' as const,
+};
+
 export default function Hero() {
   const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
@@ -90,38 +97,8 @@ export default function Hero() {
       id="hero-section"
       className="bg-background relative min-h-screen w-full overflow-x-hidden py-32 md:px-6"
     >
-      <Image
-        src="https://i.postimg.cc/9FdVdN2J/vector1.webp"
-        alt="Vector"
-        width={300}
-        draggable={false}
-        height={300}
-        className="absolute top-0 right-0 z-[2] object-cover object-center select-none"
-      />
-      <Image
-        src="https://i.postimg.cc/qR6Hz1Qc/vector2.png"
-        alt="Vector"
-        width={300}
-        height={300}
-        draggable={false}
-        className="absolute top-0 left-0 z-[2] object-cover object-center select-none"
-      />
-      <Image
-        src="https://i.postimg.cc/25Kfksd8/vector5.webp"
-        alt="Vector"
-        width={300}
-        draggable={false}
-        height={300}
-        className="absolute bottom-0 -left-44 z-[2] -rotate-90 object-cover object-center select-none"
-      />
-      <Image
-        src="https://i.postimg.cc/bvJhjytB/vector6.png"
-        alt="Vector"
-        width={300}
-        draggable={false}
-        height={300}
-        className="absolute -right-44 bottom-0 z-[2] rotate-90 object-cover object-center select-none"
-      />
+      {/* Main content first in DOM so the browser parses + paints text + the LCP rose image
+          BEFORE fetching/decoding the decorative corner vectors below. */}
       <div className="container mx-auto px-4 2xl:max-w-[1400px]">
         <motion.div
           className="flex justify-center"
@@ -149,6 +126,7 @@ export default function Hero() {
               width={500}
               height={500}
               draggable={false}
+              priority
               className="mx-4 mb-2 inline-block h-12 w-12 md:h-16 md:w-16"
             />
             blocks to ship beautiful MVPs fast.
@@ -195,6 +173,8 @@ export default function Hero() {
             transition={{ duration: 1, delay: 1.25 }}
             src="https://i.postimg.cc/13RxpmJ3/vector4.webp"
             alt="Next.js"
+            loading="lazy"
+            fetchPriority="low"
             className="mt-4 mr-2 hidden w-96 brightness-[4] select-none xl:block"
           />
           <span className="text-sm text-gray-500">
@@ -206,6 +186,7 @@ export default function Hero() {
             alt="Next.js"
             width={28}
             height={28}
+            {...DECORATIVE_HINTS}
             className="h-7 w-7 select-none"
           />
           <Image
@@ -215,6 +196,7 @@ export default function Hero() {
             height={28}
             className="h-7 w-7 select-none"
             draggable={false}
+            {...DECORATIVE_HINTS}
           />
           <Image
             src="https://i.postimg.cc/8CqnnNBW/framer.webp"
@@ -223,6 +205,7 @@ export default function Hero() {
             height={24}
             className="h-6 w-6 select-none"
             draggable={false}
+            {...DECORATIVE_HINTS}
           />
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -236,6 +219,7 @@ export default function Hero() {
               width={384}
               height={100}
               draggable={false}
+              {...DECORATIVE_HINTS}
               className="brightness-[4]"
             />
           </motion.div>
@@ -299,6 +283,49 @@ export default function Hero() {
           </main>
         </div>
       </div>
+
+      {/* Decorative corner vectors moved to END of DOM. They are absolute-positioned, so
+          visual layout is unchanged. Browser now fetches/decodes them AFTER main content. */}
+      <Image
+        src="https://i.postimg.cc/9FdVdN2J/vector1.webp"
+        alt=""
+        width={300}
+        draggable={false}
+        height={300}
+        aria-hidden="true"
+        {...DECORATIVE_HINTS}
+        className="pointer-events-none absolute top-0 right-0 z-[2] object-cover object-center select-none"
+      />
+      <Image
+        src="https://i.postimg.cc/qR6Hz1Qc/vector2.png"
+        alt=""
+        width={300}
+        height={300}
+        draggable={false}
+        aria-hidden="true"
+        {...DECORATIVE_HINTS}
+        className="pointer-events-none absolute top-0 left-0 z-[2] object-cover object-center select-none"
+      />
+      <Image
+        src="https://i.postimg.cc/25Kfksd8/vector5.webp"
+        alt=""
+        width={300}
+        draggable={false}
+        height={300}
+        aria-hidden="true"
+        {...DECORATIVE_HINTS}
+        className="pointer-events-none absolute bottom-0 -left-44 z-[2] -rotate-90 object-cover object-center select-none"
+      />
+      <Image
+        src="https://i.postimg.cc/bvJhjytB/vector6.png"
+        alt=""
+        width={300}
+        draggable={false}
+        height={300}
+        aria-hidden="true"
+        {...DECORATIVE_HINTS}
+        className="pointer-events-none absolute -right-44 bottom-0 z-[2] rotate-90 object-cover object-center select-none"
+      />
     </div>
   );
 }

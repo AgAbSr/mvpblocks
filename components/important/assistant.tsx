@@ -22,7 +22,6 @@ import {
 } from '@/components/ui/drawer';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Input } from '@/components/ui/input';
-import { MemoizedMarkdown } from '@/components/important/memoized-markdown';
 import {
   CornerDownLeftIcon,
   FileCodeIcon,
@@ -40,12 +39,20 @@ import {
 import { Button } from '../ui/button';
 import Image from 'next/image';
 import {
-  convertToModelMessages,
-  streamText,
+  isToolUIPart,
+  getToolName,
   UIMessage,
   type LanguageModelUsage,
 } from 'ai';
 import { toast } from 'sonner';
+import { Response } from '@/components/ai-elements/response';
+import {
+  Tool,
+  ToolContent,
+  ToolHeader,
+  ToolInput,
+  ToolOutput,
+} from '@/components/ai-elements/tool';
 
 type MyMetadata = {
   totalUsage: LanguageModelUsage;
@@ -269,7 +276,7 @@ export default function AssistantDialog() {
                   )}
                   <div
                     className={cn(
-                      'flex max-w-full flex-col sm:max-w-[calc(100%-3.75rem)]',
+                      'flex max-w-full flex-col gap-2 sm:max-w-[calc(100%-3.75rem)]',
                       isUser ? 'items-end' : 'items-start',
                     )}
                   >
@@ -281,15 +288,60 @@ export default function AssistantDialog() {
                           : 'dark:prose-dark prose bg-fd-muted prose-code:bg-fd-card prose-code:px-1 prose-code:font-mono prose-code:text-fd-accent-foreground',
                       )}
                     >
-                      <MemoizedMarkdown
-                        id={message.id}
-                        content={
-                          message.parts
-                            .filter((part) => part.type === 'text')
-                            .map((part) => part.text)
-                            .join('') || ''
+                      {message.parts.map((part, partIndex) => {
+                        const key = `${message.id}-${partIndex}`;
+                        if (part.type === 'text') {
+                          return (
+                            <Response key={key}>{part.text}</Response>
+                          );
                         }
-                      />
+                        if (isToolUIPart(part)) {
+                          const toolName = getToolName(part);
+                          const callId = part.toolCallId;
+                          const inputAvailable =
+                            part.state === 'input-available' ||
+                            part.state === 'output-available' ||
+                            part.state === 'output-error';
+                          return (
+                            <Tool
+                              key={callId ?? key}
+                              defaultOpen={
+                                part.state === 'input-streaming' ||
+                                part.state === 'input-available'
+                              }
+                            >
+                              <ToolHeader
+                                type={`tool-${toolName}` as never}
+                                state={part.state}
+                              />
+                              <ToolContent>
+                                {inputAvailable && part.input !== undefined && (
+                                  <ToolInput input={part.input} />
+                                )}
+                                {part.state === 'output-available' && (
+                                  <ToolOutput
+                                    output={
+                                      <pre className="font-mono text-xs whitespace-pre-wrap break-words p-3">
+                                        {typeof part.output === 'string'
+                                          ? part.output
+                                          : JSON.stringify(part.output, null, 2)}
+                                      </pre>
+                                    }
+                                    errorText={undefined}
+                                  />
+                                )}
+                                {part.state === 'output-error' && (
+                                  <ToolOutput
+                                    output={null}
+                                    errorText={part.errorText}
+                                  />
+                                )}
+                              </ToolContent>
+                            </Tool>
+                          );
+                        }
+                        return null;
+                      })}
                     </div>
                     <div className="text-fd-muted-foreground mt-1 text-xs">
                       {formatTime(timestamp)}{' '}

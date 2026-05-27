@@ -108,19 +108,25 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://i.postimg.cc" crossOrigin="" />
         <link rel="dns-prefetch" href="https://i.postimg.cc" />
+        <link
+          rel="preconnect"
+          href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com"
+          crossOrigin=""
+        />
       </head>
       <body className={`${dm.className}`}>
         <JsonLd
           data={[organizationSchema(), websiteSchema(), softwareAppSchema()]}
         />
 
-        {/* LemonSqueezy Affiliate Script */}
-        <Script id="lemon-affiliate-config" strategy="afterInteractive">
+        {/* LemonSqueezy Affiliate Script - lazyOnload so it doesn't compete
+            with hero render for network/CPU on first paint. */}
+        <Script id="lemon-affiliate-config" strategy="lazyOnload">
           {`window.lemonSqueezyAffiliateConfig = { store: "mvpblocks" };`}
         </Script>
         <Script
           src="https://lmsqueezy.com/affiliate.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
 
         {process.env.NODE_ENV === 'production' ? <Clarity /> : null}

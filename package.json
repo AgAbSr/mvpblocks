@@ -112,6 +112,7 @@
     "remark-gfm": "^4.0.1",
     "remark-mdx": "^3.1.1",
     "resend": "^4.7.0",
+    "sharp": "^0.34.3",
     "shiki": "^3.12.1",
     "sonner": "^2.0.6",
     "streamdown": "^1.1.6",
@@ -121,7 +122,6 @@
     "tsparticles-confetti": "^2.12.0",
     "use-stick-to-bottom": "^1.1.1",
     "vaul": "^1.1.2",
-    "sharp": "^0.34.3",
     "verifymailjs": "^1.1.5",
     "zod": "^4.0.5"
   },

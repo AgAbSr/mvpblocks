@@ -65,9 +65,19 @@ export default function Homepage() {
       <JsonLd data={[faqSchema(HOME_FAQS), breadcrumb]} />
 
       <Hero />
-      <Features />
-      <Gallery />
-      <Testimonials />
+      {/* content-visibility: auto lets the browser skip layout + paint for
+          below-the-fold sections until they near the viewport. contain-intrinsic-size
+          reserves space so the scrollbar/anchor positions stay stable. Zero visual
+          difference, large first-paint win. */}
+      <div className="[content-visibility:auto] [contain-intrinsic-size:1px_900px]">
+        <Features />
+      </div>
+      <div className="[content-visibility:auto] [contain-intrinsic-size:1px_1200px]">
+        <Gallery />
+      </div>
+      <div className="[content-visibility:auto] [contain-intrinsic-size:1px_900px]">
+        <Testimonials />
+      </div>
     </>
   );
 }
