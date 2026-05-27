@@ -34,7 +34,7 @@ export const ModeToggle = memo(function ModeToggle() {
     <Button
       variant="outline"
       size="icon"
-      className="text-foreground z-50 rounded-full hover:text-primary"
+      className="text-foreground hover:text-primary z-50 rounded-full"
       onClick={toggle}
     >
       {resolvedTheme === 'dark' ? <Sun /> : <Moon />}

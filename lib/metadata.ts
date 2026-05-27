@@ -1,7 +1,7 @@
 import type { Metadata } from 'next/types';
 import { siteConfig } from '@/config/site';
-import { createMetadataImage } from "fumadocs-core/server";
-import { source } from "@/lib/source";
+import { createMetadataImage } from 'fumadocs-core/server';
+import { source } from '@/lib/source';
 
 interface CreateMetadataOptions extends Metadata {
   /**
@@ -99,7 +99,7 @@ export function createMetadata(override: CreateMetadataOptions): Metadata {
 export const baseUrl = siteConfig.url;
 
 export const metadataImage = createMetadataImage({
-  imageRoute: "/api/dynamic-og",
-  filename: "image.webp",
+  imageRoute: '/api/dynamic-og',
+  filename: 'image.webp',
   source,
 });

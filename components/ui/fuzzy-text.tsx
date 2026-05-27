@@ -31,7 +31,8 @@ export const FuzzyText = ({
 
   // Noise characters for the fuzzy effect
   const noiseChars = useMemo(
-    () => '!<>-_\\/[]{}—=+*^?#_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+    () =>
+      '!<>-_\\/[]{}—=+*^?#_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
     [],
   );
 
@@ -48,7 +49,9 @@ export const FuzzyText = ({
           .split('')
           .map((char) => {
             if (char === ' ') return char;
-            return Math.random() < noiseIntensity * 0.3 ? getRandomChar() : char;
+            return Math.random() < noiseIntensity * 0.3
+              ? getRandomChar()
+              : char;
           })
           .join('');
         setDisplayText(noisyText);
@@ -66,7 +69,9 @@ export const FuzzyText = ({
           .split('')
           .map((char) => {
             if (char === ' ') return char;
-            return Math.random() < noiseIntensity * 0.3 ? getRandomChar() : char;
+            return Math.random() < noiseIntensity * 0.3
+              ? getRandomChar()
+              : char;
           })
           .join('');
         setDisplayText(noisyText);
@@ -153,7 +158,7 @@ export const FuzzyText = ({
         <>
           {/* Red channel offset */}
           <motion.span
-            className="pointer-events-none absolute left-0 top-0"
+            className="pointer-events-none absolute top-0 left-0"
             style={{
               color: 'transparent',
               textShadow: `0 0 2px rgba(255, 0, 0, ${0.4 * noiseIntensity})`,
@@ -174,7 +179,7 @@ export const FuzzyText = ({
 
           {/* Blue channel offset */}
           <motion.span
-            className="pointer-events-none absolute left-0 top-0"
+            className="pointer-events-none absolute top-0 left-0"
             style={{
               color: 'transparent',
               textShadow: `0 0 2px rgba(0, 100, 255, ${0.4 * noiseIntensity})`,

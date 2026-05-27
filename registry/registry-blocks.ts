@@ -1722,7 +1722,7 @@ export const blocks: Registry = [
   },
   {
     name: 'shuffle-text-demo',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description:
       'A text scramble/shuffle animation that decodes text with random characters. Reveals text letter by letter from left to right.',
@@ -1741,7 +1741,7 @@ export const blocks: Registry = [
   },
   {
     name: 'shuffle-text-hover',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description:
       'A hover-triggered text scramble animation. Text decodes when user hovers over it.',
@@ -1755,12 +1755,13 @@ export const blocks: Registry = [
       },
     ],
     component: React.lazy(
-      () => import('../components/mvpblocks/text-animations/shuffle-text-hover'),
+      () =>
+        import('../components/mvpblocks/text-animations/shuffle-text-hover'),
     ),
   },
   {
     name: 'shuffle-text-inview',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description:
       'A scroll-triggered text scramble animation. Text decodes when scrolled into view.',
@@ -1781,7 +1782,7 @@ export const blocks: Registry = [
   // Shiny Text animations
   {
     name: 'shiny-text-demo',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Premium Apple-style shine effect that sweeps across text.',
     type: 'registry:block',
@@ -1799,7 +1800,7 @@ export const blocks: Registry = [
   },
   {
     name: 'shiny-text-hover',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Shine effect triggered on hover.',
     type: 'registry:block',
@@ -1817,7 +1818,7 @@ export const blocks: Registry = [
   },
   {
     name: 'shiny-text-gradient',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Shine effect combined with gradient text.',
     type: 'registry:block',
@@ -1838,7 +1839,7 @@ export const blocks: Registry = [
   {
     name: 'blur-in-text-demo',
     categories: ['text-animation'],
-    author: "vedant7007",
+    author: 'vedant7007',
     description: 'Text emerges from blur letter by letter.',
     type: 'registry:block',
     dependencies: ['framer-motion', 'react'],
@@ -1856,7 +1857,7 @@ export const blocks: Registry = [
   {
     name: 'blur-in-text-word',
     categories: ['text-animation'],
-    author: "vedant7007",
+    author: 'vedant7007',
     description: 'Text emerges from blur word by word.',
     type: 'registry:block',
     dependencies: ['framer-motion', 'react'],
@@ -1874,7 +1875,7 @@ export const blocks: Registry = [
   {
     name: 'blur-in-text-inview',
     categories: ['text-animation'],
-    author: "vedant7007",
+    author: 'vedant7007',
     description: 'Blur in animation triggered on scroll.',
     type: 'registry:block',
     dependencies: ['framer-motion', 'react'],
@@ -1893,7 +1894,7 @@ export const blocks: Registry = [
   // Wave Text animations
   {
     name: 'wave-text-demo',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Letters dance in a smooth sine wave pattern.',
     type: 'registry:block',
@@ -1911,7 +1912,7 @@ export const blocks: Registry = [
   },
   {
     name: 'wave-text-hover',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Wave animation triggered on hover.',
     type: 'registry:block',
@@ -1929,7 +1930,7 @@ export const blocks: Registry = [
   },
   {
     name: 'wave-text-subtle',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Gentle, subtle wave motion.',
     type: 'registry:block',
@@ -1948,7 +1949,7 @@ export const blocks: Registry = [
   // Glitch Text animations
   {
     name: 'glitch-text-demo',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Cyberpunk-style glitch effect with RGB splitting.',
     type: 'registry:block',
@@ -1966,7 +1967,7 @@ export const blocks: Registry = [
   },
   {
     name: 'glitch-text-hover',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Intense glitch effect on hover.',
     type: 'registry:block',
@@ -1984,7 +1985,7 @@ export const blocks: Registry = [
   },
   {
     name: 'glitch-text-subtle',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Subtle, professional glitch effect.',
     type: 'registry:block',
@@ -1997,13 +1998,14 @@ export const blocks: Registry = [
       },
     ],
     component: React.lazy(
-      () => import('../components/mvpblocks/text-animations/glitch-text-subtle'),
+      () =>
+        import('../components/mvpblocks/text-animations/glitch-text-subtle'),
     ),
   },
   // Fuzzy TV Text animations
   {
     name: 'fuzzy-text-demo',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Retro CRT TV static effect with progressive reveal.',
     type: 'registry:block',
@@ -2021,7 +2023,7 @@ export const blocks: Registry = [
   },
   {
     name: 'fuzzy-text-hover',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Static clears on hover to reveal text.',
     type: 'registry:block',
@@ -2039,7 +2041,7 @@ export const blocks: Registry = [
   },
   {
     name: 'fuzzy-text-fast',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Quick tune-in effect without scanlines.',
     type: 'registry:block',
@@ -2059,7 +2061,7 @@ export const blocks: Registry = [
   {
     name: 'fade-in-up-demo',
     categories: ['text-animation'],
-    author: "vedant7007",
+    author: 'vedant7007',
     description: 'Text fades in while floating upward word by word.',
     type: 'registry:block',
     dependencies: ['framer-motion', 'react'],
@@ -2078,7 +2080,7 @@ export const blocks: Registry = [
   },
   {
     name: 'fade-in-up-letter',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Each letter animates individually.',
     type: 'registry:block',
@@ -2098,7 +2100,7 @@ export const blocks: Registry = [
   },
   {
     name: 'fade-in-up-left',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Text slides in from the right.',
     type: 'registry:block',
@@ -2119,7 +2121,7 @@ export const blocks: Registry = [
   // Gradient Flow Text animations
   {
     name: 'gradient-flow-demo',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Mesmerizing animated gradient flowing through text.',
     type: 'registry:block',
@@ -2134,12 +2136,13 @@ export const blocks: Registry = [
       },
     ],
     component: React.lazy(
-      () => import('../components/mvpblocks/text-animations/gradient-flow-demo'),
+      () =>
+        import('../components/mvpblocks/text-animations/gradient-flow-demo'),
     ),
   },
   {
     name: 'gradient-flow-hover',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Gradient starts flowing on hover.',
     type: 'registry:block',
@@ -2160,7 +2163,7 @@ export const blocks: Registry = [
   },
   {
     name: 'gradient-flow-rainbow',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Full rainbow color cycle gradient flow.',
     type: 'registry:block',
@@ -2181,7 +2184,7 @@ export const blocks: Registry = [
   },
   {
     name: 'scroll-reveal-demo',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Text reveals with blur effect tied to scroll position.',
     type: 'registry:block',
@@ -2196,12 +2199,13 @@ export const blocks: Registry = [
       },
     ],
     component: React.lazy(
-      () => import('../components/mvpblocks/text-animations/scroll-reveal-demo'),
+      () =>
+        import('../components/mvpblocks/text-animations/scroll-reveal-demo'),
     ),
   },
   {
     name: 'scroll-reveal-characters',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Character-by-character scroll reveal effect.',
     type: 'registry:block',
@@ -2217,12 +2221,14 @@ export const blocks: Registry = [
     ],
     component: React.lazy(
       () =>
-        import('../components/mvpblocks/text-animations/scroll-reveal-characters'),
+        import(
+          '../components/mvpblocks/text-animations/scroll-reveal-characters'
+        ),
     ),
   },
   {
     name: 'scroll-reveal-slide',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Slide in text reveal tied to scroll position.',
     type: 'registry:block',
@@ -2243,9 +2249,10 @@ export const blocks: Registry = [
   },
   {
     name: 'variable-proximity-demo',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
-    description: 'Interactive text with font weight changing on mouse proximity.',
+    description:
+      'Interactive text with font weight changing on mouse proximity.',
     type: 'registry:block',
     dependencies: ['framer-motion', 'react'],
     registryDependencies: [
@@ -2259,12 +2266,14 @@ export const blocks: Registry = [
     ],
     component: React.lazy(
       () =>
-        import('../components/mvpblocks/text-animations/variable-proximity-demo'),
+        import(
+          '../components/mvpblocks/text-animations/variable-proximity-demo'
+        ),
     ),
   },
   {
     name: 'variable-proximity-gaussian',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Variable proximity text with smooth gaussian falloff.',
     type: 'registry:block',
@@ -2280,12 +2289,14 @@ export const blocks: Registry = [
     ],
     component: React.lazy(
       () =>
-        import('../components/mvpblocks/text-animations/variable-proximity-gaussian'),
+        import(
+          '../components/mvpblocks/text-animations/variable-proximity-gaussian'
+        ),
     ),
   },
   {
     name: 'variable-proximity-exponential',
-    author: "vedant7007",
+    author: 'vedant7007',
     categories: ['text-animation'],
     description: 'Variable proximity text with exponential falloff effect.',
     type: 'registry:block',
@@ -2301,7 +2312,9 @@ export const blocks: Registry = [
     ],
     component: React.lazy(
       () =>
-        import('../components/mvpblocks/text-animations/variable-proximity-exponential'),
+        import(
+          '../components/mvpblocks/text-animations/variable-proximity-exponential'
+        ),
     ),
   },
   {

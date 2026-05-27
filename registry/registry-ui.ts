@@ -13,9 +13,11 @@ export const ui: Registry = [
         type: 'registry:ui',
       },
     ],
-    component: React.lazy(() => import('.././components/ui/target-cursor').then((mod) => ({
-      default: mod.TargetCursor,
-    }))),
+    component: React.lazy(() =>
+      import('.././components/ui/target-cursor').then((mod) => ({
+        default: mod.TargetCursor,
+      })),
+    ),
   },
   {
     name: 'floating-dock',
@@ -28,9 +30,11 @@ export const ui: Registry = [
         type: 'registry:ui',
       },
     ],
-    component: React.lazy(() => import('.././components/ui/floating-dock').then((mod) => ({
-      default: mod.FloatingDock,
-    }))),
+    component: React.lazy(() =>
+      import('.././components/ui/floating-dock').then((mod) => ({
+        default: mod.FloatingDock,
+      })),
+    ),
   },
   {
     name: 'text-type',
@@ -43,9 +47,11 @@ export const ui: Registry = [
         type: 'registry:ui',
       },
     ],
-    component: React.lazy(() => import('.././components/ui/text-type').then((mod) => ({
-      default: mod.TextType,
-    }))),
+    component: React.lazy(() =>
+      import('.././components/ui/text-type').then((mod) => ({
+        default: mod.TextType,
+      })),
+    ),
   },
   {
     name: 'shuffle-text',
@@ -258,9 +264,11 @@ export const ui: Registry = [
         type: 'registry:ui',
       },
     ],
-    component: React.lazy(() => import('.././components/ui/pointer-highlight').then((mod) => ({
-      default: mod.PointerHighlight,
-    }))),
+    component: React.lazy(() =>
+      import('.././components/ui/pointer-highlight').then((mod) => ({
+        default: mod.PointerHighlight,
+      })),
+    ),
   },
   {
     name: 'expandable',
@@ -273,9 +281,11 @@ export const ui: Registry = [
         type: 'registry:ui',
       },
     ],
-    component: React.lazy(() => import('.././components/ui/expandable').then((mod) => ({
-      default: mod.Expandable,
-    }))),
+    component: React.lazy(() =>
+      import('.././components/ui/expandable').then((mod) => ({
+        default: mod.Expandable,
+      })),
+    ),
   },
   {
     name: 'text-reveal',

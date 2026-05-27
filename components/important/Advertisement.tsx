@@ -39,10 +39,10 @@ export default function Advertisement() {
               alt="Template preview"
               width={1000}
               height={1000}
-              className="max-w-md w-full rounded-lg object-cover"
+              className="w-full max-w-md rounded-lg object-cover"
             />
 
-            <div className="space-y-2 text-center max-w-sm mx-auto">
+            <div className="mx-auto max-w-sm space-y-2 text-center">
               <p className="text-sm text-neutral-400">
                 ✨ Lovable, premium-quality templates available at the most
                 cheapest prices, built to look elite.

@@ -68,7 +68,9 @@ export const NavbarDemo = memo(function NavbarDemo() {
     <Navbar className="z-[150]">
       <NavBody>
         <NavbarLogo />
-        <NavItems items={NAV_ITEMS as unknown as typeof NAV_ITEMS[number][]} />
+        <NavItems
+          items={NAV_ITEMS as unknown as (typeof NAV_ITEMS)[number][]}
+        />
         <div className="flex items-center gap-3">
           <NavbarButton variant="gradient">
             <Link

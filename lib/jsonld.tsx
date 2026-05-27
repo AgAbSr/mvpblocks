@@ -88,9 +88,7 @@ export function softwareAppSchema() {
   } as const;
 }
 
-export function faqSchema(
-  faqs: Array<{ question: string; answer: string }>,
-) {
+export function faqSchema(faqs: Array<{ question: string; answer: string }>) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -105,9 +103,7 @@ export function faqSchema(
   } as const;
 }
 
-export function breadcrumbSchema(
-  items: Array<{ name: string; url: string }>,
-) {
+export function breadcrumbSchema(items: Array<{ name: string; url: string }>) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -121,7 +117,12 @@ export function breadcrumbSchema(
 }
 
 export function itemListSchema(
-  items: Array<{ name: string; url: string; description?: string; image?: string }>,
+  items: Array<{
+    name: string;
+    url: string;
+    description?: string;
+    image?: string;
+  }>,
   name: string,
 ) {
   return {

@@ -12,10 +12,10 @@ export const SponsorButton = memo(function SponsorButton() {
   return (
     <NavbarButton
       variant="gradient"
-      className="flex w-full items-center justify-center gap-1 bg-secondary/50 hover:bg-secondary/60 hover:translate-0!"
+      className="bg-secondary/50 hover:bg-secondary/60 flex w-full items-center justify-center gap-1 hover:translate-0!"
       onClick={goToSponsor}
     >
-      <Heart className="inline-block h-4 w-4 fill-primary text-primary" />
+      <Heart className="fill-primary text-primary inline-block h-4 w-4" />
       Sponsor
     </NavbarButton>
   );

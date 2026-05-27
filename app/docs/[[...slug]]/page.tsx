@@ -30,11 +30,7 @@ import { createMetadata, metadataImage } from '@/lib/metadata';
 import { Metadata } from 'next';
 import { NavbarButton } from '@/components/ui/resizable-navbar';
 import { SponsorButton } from '@/components/shared/sponsor';
-import {
-  JsonLd,
-  articleSchema,
-  breadcrumbSchema,
-} from '@/lib/jsonld';
+import { JsonLd, articleSchema, breadcrumbSchema } from '@/lib/jsonld';
 
 // Only the lucide icons actually referenced as JSX inside content/docs/**/*.mdx.
 // Previously we spread `await import('lucide-react')` (1300+ exports) into the
@@ -156,13 +152,18 @@ Add any other context or screenshots about the feature request here.`)}`}
     }
   }
 
-  const docPathname = `/docs/${params.slug?.join('/') ?? ''}`.replace(/\/$/, '') || '/docs';
+  const docPathname =
+    `/docs/${params.slug?.join('/') ?? ''}`.replace(/\/$/, '') || '/docs';
   const article = articleSchema({
     title: page.data.title,
     description: page.data.description ?? '',
     pathname: docPathname,
-    datePublished: lastModified ? new Date(lastModified).toISOString() : undefined,
-    dateModified: lastModified ? new Date(lastModified).toISOString() : undefined,
+    datePublished: lastModified
+      ? new Date(lastModified).toISOString()
+      : undefined,
+    dateModified: lastModified
+      ? new Date(lastModified).toISOString()
+      : undefined,
   });
   const breadcrumb = breadcrumbSchema(breadcrumbItems);
 

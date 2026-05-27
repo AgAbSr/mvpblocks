@@ -6,7 +6,10 @@ import { createElement } from 'react';
 import type { InferMetaType, InferPageType } from 'fumadocs-core/source';
 import { Lovable } from '@/components/shared/lovable-logo';
 
-const customIcons: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
+const customIcons: Record<
+  string,
+  React.ComponentType<React.SVGProps<SVGSVGElement>>
+> = {
   Lovable,
 };
 
@@ -57,8 +60,7 @@ export const source = loader({
   icon(icon) {
     if (!icon) return;
     if (icon in customIcons) return createElement(customIcons[icon]);
-    if (icon in icons)
-      return createElement(icons[icon as keyof typeof icons]);
+    if (icon in icons) return createElement(icons[icon as keyof typeof icons]);
   },
 });
 

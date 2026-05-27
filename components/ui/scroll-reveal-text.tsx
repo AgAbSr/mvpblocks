@@ -45,11 +45,7 @@ export const ScrollRevealText = ({
   const fadeOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   // Slide reveal transforms
-  const slideY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [slideDistance, 0],
-  );
+  const slideY = useTransform(scrollYProgress, [0, 1], [slideDistance, 0]);
   const slideOpacity = useTransform(scrollYProgress, [0, 0.3, 1], [0, 0.5, 1]);
 
   // Scale reveal transforms

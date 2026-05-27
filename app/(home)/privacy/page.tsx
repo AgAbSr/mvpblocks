@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Spotlight } from '@/components/ui/spotlight';
 import { geist } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
-import LegalHeader from "@/components/ui/LegalHeader";
+import LegalHeader from '@/components/ui/LegalHeader';
 import { createMetadata } from '@/lib/metadata';
 import { JsonLd, breadcrumbSchema } from '@/lib/jsonld';
 import { siteConfig } from '@/config/site';
@@ -50,8 +50,8 @@ export default function PrivacyPage() {
               <p className="text-lg leading-relaxed">
                 At MVPBlocks, your privacy is not just respected: it&apos;s
                 structurally baked into how we work. We don&apos;t track. We
-                don&apos;t snoop. We don&apos;t ask for more than we
-                need, because we don&apos;t need much at all.
+                don&apos;t snoop. We don&apos;t ask for more than we need,
+                because we don&apos;t need much at all.
               </p>
               <p className="text-lg leading-relaxed">
                 This Privacy Policy explains what limited information we

@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import type { AttachmentData } from "@/components/ai-elements/attachments";
+import type { AttachmentData } from '@/components/ai-elements/attachments';
 import {
   Attachment,
   AttachmentInfo,
   AttachmentPreview,
   AttachmentRemove,
   Attachments,
-} from "@/components/ai-elements/attachments";
+} from '@/components/ai-elements/attachments';
 import {
   ModelSelector,
   ModelSelectorContent,
@@ -20,8 +20,8 @@ import {
   ModelSelectorLogoGroup,
   ModelSelectorName,
   ModelSelectorTrigger,
-} from "@/components/ai-elements/model-selector";
-import type { PromptInputMessage } from "@/components/ai-elements/prompt-input";
+} from '@/components/ai-elements/model-selector';
+import type { PromptInputMessage } from '@/components/ai-elements/prompt-input';
 import {
   PromptInput,
   PromptInputBody,
@@ -48,9 +48,9 @@ import {
   PromptInputTools,
   usePromptInputAttachments,
   usePromptInputReferencedSources,
-} from "@/components/ai-elements/prompt-input";
-import { Button } from "@/components/ui/button";
-import type { SourceDocumentUIPart } from "ai";
+} from '@/components/ai-elements/prompt-input';
+import { Button } from '@/components/ui/button';
+import type { SourceDocumentUIPart } from 'ai';
 import {
   AtSignIcon,
   CheckIcon,
@@ -58,44 +58,44 @@ import {
   GlobeIcon,
   ImageIcon,
   RulerIcon,
-} from "lucide-react";
-import { memo, useCallback, useState } from "react";
+} from 'lucide-react';
+import { memo, useCallback, useState } from 'react';
 
 const models = [
   {
-    chef: "OpenAI",
-    chefSlug: "openai",
-    id: "gpt-4o",
-    name: "GPT-4o",
-    providers: ["openai", "azure"],
+    chef: 'OpenAI',
+    chefSlug: 'openai',
+    id: 'gpt-4o',
+    name: 'GPT-4o',
+    providers: ['openai', 'azure'],
   },
   {
-    chef: "OpenAI",
-    chefSlug: "openai",
-    id: "gpt-4o-mini",
-    name: "GPT-4o Mini",
-    providers: ["openai", "azure"],
+    chef: 'OpenAI',
+    chefSlug: 'openai',
+    id: 'gpt-4o-mini',
+    name: 'GPT-4o Mini',
+    providers: ['openai', 'azure'],
   },
   {
-    chef: "Anthropic",
-    chefSlug: "anthropic",
-    id: "claude-opus-4-20250514",
-    name: "Claude 4 Opus",
-    providers: ["anthropic", "azure", "google", "amazon-bedrock"],
+    chef: 'Anthropic',
+    chefSlug: 'anthropic',
+    id: 'claude-opus-4-20250514',
+    name: 'Claude 4 Opus',
+    providers: ['anthropic', 'azure', 'google', 'amazon-bedrock'],
   },
   {
-    chef: "Anthropic",
-    chefSlug: "anthropic",
-    id: "claude-sonnet-4-20250514",
-    name: "Claude 4 Sonnet",
-    providers: ["anthropic", "azure", "google", "amazon-bedrock"],
+    chef: 'Anthropic',
+    chefSlug: 'anthropic',
+    id: 'claude-sonnet-4-20250514',
+    name: 'Claude 4 Sonnet',
+    providers: ['anthropic', 'azure', 'google', 'amazon-bedrock'],
   },
   {
-    chef: "Google",
-    chefSlug: "google",
-    id: "gemini-2.0-flash-exp",
-    name: "Gemini 2.0 Flash",
-    providers: ["google"],
+    chef: 'Google',
+    chefSlug: 'google',
+    id: 'gemini-2.0-flash-exp',
+    name: 'Gemini 2.0 Flash',
+    providers: ['google'],
   },
 ];
 
@@ -110,7 +110,7 @@ interface AttachmentItemProps {
 const AttachmentItem = memo(({ attachment, onRemove }: AttachmentItemProps) => {
   const handleRemove = useCallback(
     () => onRemove(attachment.id),
-    [onRemove, attachment.id]
+    [onRemove, attachment.id],
   );
   return (
     <Attachment data={attachment} key={attachment.id} onRemove={handleRemove}>
@@ -120,7 +120,7 @@ const AttachmentItem = memo(({ attachment, onRemove }: AttachmentItemProps) => {
   );
 });
 
-AttachmentItem.displayName = "AttachmentItem";
+AttachmentItem.displayName = 'AttachmentItem';
 
 interface SourceItemProps {
   source: AttachmentData;
@@ -130,7 +130,7 @@ interface SourceItemProps {
 const SourceItem = memo(({ source, onRemove }: SourceItemProps) => {
   const handleRemove = useCallback(
     () => onRemove(source.id),
-    [onRemove, source.id]
+    [onRemove, source.id],
   );
   return (
     <Attachment data={source} key={source.id} onRemove={handleRemove}>
@@ -141,7 +141,7 @@ const SourceItem = memo(({ source, onRemove }: SourceItemProps) => {
   );
 });
 
-SourceItem.displayName = "SourceItem";
+SourceItem.displayName = 'SourceItem';
 
 interface ModelItemProps {
   m: (typeof models)[0];
@@ -169,7 +169,7 @@ const ModelItem = memo(({ m, selectedModel, onSelect }: ModelItemProps) => {
   );
 });
 
-ModelItem.displayName = "ModelItem";
+ModelItem.displayName = 'ModelItem';
 
 interface SourceCommandItemProps {
   source: SourceDocumentUIPart;
@@ -185,48 +185,48 @@ const SourceCommandItem = memo(({ source, onAdd }: SourceCommandItemProps) => {
     >
       <GlobeIcon className="text-primary" />
       <div className="flex flex-col">
-        <span className="font-medium text-sm">{source.title}</span>
+        <span className="text-sm font-medium">{source.title}</span>
         <span className="text-muted-foreground text-xs">{source.filename}</span>
       </div>
     </PromptInputCommandItem>
   );
 });
 
-SourceCommandItem.displayName = "SourceCommandItem";
+SourceCommandItem.displayName = 'SourceCommandItem';
 
 const sampleSources: SourceDocumentUIPart[] = [
   {
-    filename: "packages/elements/src",
-    mediaType: "text/plain",
-    sourceId: "1",
-    title: "prompt-input.tsx",
-    type: "source-document",
+    filename: 'packages/elements/src',
+    mediaType: 'text/plain',
+    sourceId: '1',
+    title: 'prompt-input.tsx',
+    type: 'source-document',
   },
   {
-    filename: "apps/test/app/examples",
-    mediaType: "text/plain",
-    sourceId: "2",
-    title: "queue.tsx",
-    type: "source-document",
+    filename: 'apps/test/app/examples',
+    mediaType: 'text/plain',
+    sourceId: '2',
+    title: 'queue.tsx',
+    type: 'source-document',
   },
   {
-    filename: "packages/elements/src",
-    mediaType: "text/plain",
-    sourceId: "3",
-    title: "queue.tsx",
-    type: "source-document",
+    filename: 'packages/elements/src',
+    mediaType: 'text/plain',
+    sourceId: '3',
+    title: 'queue.tsx',
+    type: 'source-document',
   },
 ];
 
 const sampleTabs = {
-  active: [{ path: "packages/elements/src/task-queue-panel.tsx" }],
+  active: [{ path: 'packages/elements/src/task-queue-panel.tsx' }],
   recents: [
-    { path: "apps/test/app/examples/task-queue-panel.tsx" },
-    { path: "apps/test/app/page.tsx" },
-    { path: "packages/elements/src/task.tsx" },
-    { path: "apps/test/app/examples/prompt-input.tsx" },
-    { path: "packages/elements/src/queue.tsx" },
-    { path: "apps/test/app/examples/queue.tsx" },
+    { path: 'apps/test/app/examples/task-queue-panel.tsx' },
+    { path: 'apps/test/app/page.tsx' },
+    { path: 'packages/elements/src/task.tsx' },
+    { path: 'apps/test/app/examples/prompt-input.tsx' },
+    { path: 'packages/elements/src/queue.tsx' },
+    { path: 'apps/test/app/examples/queue.tsx' },
   ],
 };
 
@@ -235,7 +235,7 @@ const PromptInputAttachmentsDisplay = () => {
 
   const handleRemove = useCallback(
     (id: string) => attachments.remove(id),
-    [attachments]
+    [attachments],
   );
 
   if (attachments.files.length === 0) {
@@ -282,7 +282,7 @@ const SampleFilesMenu = () => {
 
   const handleAdd = useCallback(
     (source: SourceDocumentUIPart) => refs.add(source),
-    [refs]
+    [refs],
   );
 
   return (
@@ -292,14 +292,14 @@ const SampleFilesMenu = () => {
         placeholder="Add files, folders, docs..."
       />
       <PromptInputCommandList>
-        <PromptInputCommandEmpty className="p-3 text-muted-foreground text-sm">
+        <PromptInputCommandEmpty className="text-muted-foreground p-3 text-sm">
           No results found.
         </PromptInputCommandEmpty>
         <PromptInputCommandGroup heading="Added">
           <PromptInputCommandItem>
             <GlobeIcon />
             <span>Active Tabs</span>
-            <span className="ml-auto text-muted-foreground">✓</span>
+            <span className="text-muted-foreground ml-auto">✓</span>
           </PromptInputCommandItem>
         </PromptInputCommandGroup>
         <PromptInputCommandSeparator />
@@ -309,8 +309,8 @@ const SampleFilesMenu = () => {
               (source) =>
                 !refs.sources.some(
                   (s) =>
-                    s.title === source.title && s.filename === source.filename
-                )
+                    s.title === source.title && s.filename === source.filename,
+                ),
             )
             .map((source) => (
               <SourceCommandItem
@@ -329,8 +329,8 @@ const Example = () => {
   const [model, setModel] = useState<string>(models[0].id);
   const [modelSelectorOpen, setModelSelectorOpen] = useState(false);
   const [status, setStatus] = useState<
-    "submitted" | "streaming" | "ready" | "error"
-  >("ready");
+    'submitted' | 'streaming' | 'ready' | 'error'
+  >('ready');
 
   const selectedModelData = models.find((m) => m.id === model);
 
@@ -347,14 +347,14 @@ const Example = () => {
       return;
     }
 
-    setStatus("submitted");
+    setStatus('submitted');
 
     setTimeout(() => {
-      setStatus("streaming");
+      setStatus('streaming');
     }, SUBMITTING_TIMEOUT);
 
     setTimeout(() => {
-      setStatus("ready");
+      setStatus('ready');
     }, STREAMING_TIMEOUT);
   }, []);
 
@@ -386,15 +386,15 @@ const Example = () => {
               </PromptInputHoverCardTrigger>
               <PromptInputHoverCardContent className="divide-y overflow-hidden p-0">
                 <div className="space-y-2 p-3">
-                  <p className="font-medium text-muted-foreground text-sm">
+                  <p className="text-muted-foreground text-sm font-medium">
                     Attached Project Rules
                   </p>
-                  <p className="ml-4 text-muted-foreground text-sm">
+                  <p className="text-muted-foreground ml-4 text-sm">
                     Always Apply:
                   </p>
                   <p className="ml-8 text-sm">ultracite.mdc</p>
                 </div>
-                <p className="bg-sidebar px-4 py-3 text-muted-foreground text-sm">
+                <p className="bg-sidebar text-muted-foreground px-4 py-3 text-sm">
                   Click to manage
                 </p>
               </PromptInputHoverCardContent>
@@ -433,7 +433,7 @@ const Example = () => {
                     ))}
                   </PromptInputTabBody>
                 </PromptInputTab>
-                <div className="border-t px-3 pt-2 text-muted-foreground text-xs">
+                <div className="text-muted-foreground border-t px-3 pt-2 text-xs">
                   Only file paths are included
                 </div>
               </PromptInputHoverCardContent>
@@ -468,7 +468,7 @@ const Example = () => {
                   <ModelSelectorInput placeholder="Search models..." />
                   <ModelSelectorList>
                     <ModelSelectorEmpty>No models found.</ModelSelectorEmpty>
-                    {["OpenAI", "Anthropic", "Google"].map((chef) => (
+                    {['OpenAI', 'Anthropic', 'Google'].map((chef) => (
                       <ModelSelectorGroup heading={chef} key={chef}>
                         {models
                           .filter((m) => m.chef === chef)

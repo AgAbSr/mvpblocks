@@ -4,11 +4,7 @@ import Features from '@/components/home/features';
 import Gallery from '@/components/home/gallery';
 import Testimonials from '@/components/home/testimonials';
 import { createMetadata } from '@/lib/metadata';
-import {
-  JsonLd,
-  breadcrumbSchema,
-  faqSchema,
-} from '@/lib/jsonld';
+import { JsonLd, breadcrumbSchema, faqSchema } from '@/lib/jsonld';
 import { siteConfig } from '@/config/site';
 
 export const dynamic = 'force-static';
@@ -62,9 +58,7 @@ const HOME_FAQS = [
 ];
 
 export default function Homepage() {
-  const breadcrumb = breadcrumbSchema([
-    { name: 'Home', url: siteConfig.url },
-  ]);
+  const breadcrumb = breadcrumbSchema([{ name: 'Home', url: siteConfig.url }]);
 
   return (
     <>

@@ -114,8 +114,8 @@ const CliCard = memo(function CliCard({
         </h3>
         <div className="text-md text-muted-foreground flex flex-col gap-2 text-sm">
           <p className="max-w-[460px]">
-            Integrate your landing page directly in the product while using
-            your favorite tools.
+            Integrate your landing page directly in the product while using your
+            favorite tools.
           </p>
         </div>
       </div>
@@ -227,8 +227,9 @@ const GlobeCard = memo(function GlobeCard({
   const onEnter = useCallback(() => setIsHovering(true), []);
   const onLeave = useCallback(() => setIsHovering(false), []);
   const animate = isInView ? MOTION_VISIBLE : MOTION_HIDDEN;
-  const setIsHoveringHandler =
-    setIsHovering as Dispatch<SetStateAction<boolean>>;
+  const setIsHoveringHandler = setIsHovering as Dispatch<
+    SetStateAction<boolean>
+  >;
 
   return (
     <motion.div
@@ -308,7 +309,9 @@ export default function Features() {
     dark: number;
   }>(
     () =>
-      isDark ? { baseColor: [1, 0, 0.3], dark: 1 } : { baseColor: [1, 1, 1], dark: 0 },
+      isDark
+        ? { baseColor: [1, 0, 0.3], dark: 1 }
+        : { baseColor: [1, 1, 1], dark: 0 },
     [isDark],
   );
 
@@ -337,7 +340,11 @@ export default function Features() {
           Features
         </h2>
         <div className="grid grid-cols-12 gap-4">
-          <PixelCard cardRef={pixelRef} isInView={pixelInView} isLight={isLight} />
+          <PixelCard
+            cardRef={pixelRef}
+            isInView={pixelInView}
+            isLight={isLight}
+          />
           <CliCard cardRef={cliRef} isInView={cliInView} isDark={isDark} />
           <GlobeCard
             cardRef={globeRef}

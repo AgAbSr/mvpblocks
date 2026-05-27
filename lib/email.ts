@@ -15,7 +15,9 @@ export function generateThankYouEmail({
   amount?: string;
   autoDownload?: boolean;
 }) {
-  const accessHeading = autoDownload ? 'Access Your Purchase' : 'Open Your Project';
+  const accessHeading = autoDownload
+    ? 'Access Your Purchase'
+    : 'Open Your Project';
   const accessMessage = autoDownload
     ? 'Your purchase is ready for download. Click the button below to access your content immediately.'
     : 'Your project is ready to remix. Click the button below to open it in your browser.';

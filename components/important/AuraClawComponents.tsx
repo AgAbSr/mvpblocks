@@ -46,10 +46,7 @@ const LOCKED_PERKS: Record<AuraClawPlan, number> = {
   ultimate: 0,
 };
 
-const PLAN_META: Record<
-  AuraClawPlan,
-  { label: string; tagline?: string }
-> = {
+const PLAN_META: Record<AuraClawPlan, { label: string; tagline?: string }> = {
   starter: {
     label: 'Starter',
     tagline: 'Runs totally on local',
@@ -125,12 +122,10 @@ function AuraClawBuyDialog({
     <>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <Button>
-            Buy Now ₹5999
-          </Button>
+          <Button>Buy Now ₹5999</Button>
         </DialogTrigger>
 
-        <DialogContent className="flex flex-col gap-2 overflow-hidden rounded-xl bg-neutral-100 p-0 shadow-lg max-w-lg dark:bg-neutral-900">
+        <DialogContent className="flex max-w-lg flex-col gap-2 overflow-hidden rounded-xl bg-neutral-100 p-0 shadow-lg dark:bg-neutral-900">
           <div className="relative px-6 py-10">
             <div className="bg-primary/30 absolute -top-10 left-0 h-16 w-full blur-2xl"></div>
             <div className="flex flex-col gap-4">
@@ -188,7 +183,7 @@ function AuraClawBuyDialog({
                     aria-checked={isSelected}
                     onClick={() => setSelectedPlan(plan)}
                     className={cn(
-                      'group relative w-full flex items-center gap-3 rounded-lg border p-3 text-left transition-colors',
+                      'group relative flex w-full items-center gap-3 rounded-lg border p-3 text-left transition-colors',
                       isSelected
                         ? 'border-primary bg-primary/10'
                         : 'border-border bg-secondary/40 hover:bg-secondary',
@@ -225,7 +220,8 @@ function AuraClawBuyDialog({
 
             <ul className="border-border/60 mt-4 flex flex-col gap-1.5 rounded-lg border border-dashed p-3">
               {ALL_PERKS.map((perk, i) => {
-                const locked = i >= ALL_PERKS.length - LOCKED_PERKS[selectedPlan];
+                const locked =
+                  i >= ALL_PERKS.length - LOCKED_PERKS[selectedPlan];
                 const isVoice = perk.startsWith('Voice mode');
                 return (
                   <li

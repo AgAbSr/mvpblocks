@@ -65,7 +65,8 @@ const config: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=31536000, stale-while-revalidate=604800',
+            value:
+              'public, max-age=3600, s-maxage=31536000, stale-while-revalidate=604800',
           },
         ],
       },
@@ -74,7 +75,8 @@ const config: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=31536000, stale-while-revalidate=604800',
+            value:
+              'public, max-age=3600, s-maxage=31536000, stale-while-revalidate=604800',
           },
         ],
       },
@@ -83,7 +85,8 @@ const config: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=31536000, stale-while-revalidate=604800',
+            value:
+              'public, max-age=3600, s-maxage=31536000, stale-while-revalidate=604800',
           },
         ],
       },
@@ -92,7 +95,8 @@ const config: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=31536000, stale-while-revalidate=604800',
+            value:
+              'public, max-age=3600, s-maxage=31536000, stale-while-revalidate=604800',
           },
         ],
       },
@@ -132,7 +136,8 @@ const config: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800',
+            value:
+              'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800',
           },
           {
             key: 'Vercel-CDN-Cache-Control',
@@ -145,7 +150,8 @@ const config: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800',
+            value:
+              'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800',
           },
           {
             key: 'Vercel-CDN-Cache-Control',
@@ -158,7 +164,8 @@ const config: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800',
+            value:
+              'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800',
           },
         ],
       },
@@ -167,7 +174,8 @@ const config: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800',
+            value:
+              'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800',
           },
         ],
       },
@@ -176,7 +184,8 @@ const config: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=31536000, stale-while-revalidate=604800',
+            value:
+              'public, max-age=3600, s-maxage=31536000, stale-while-revalidate=604800',
           },
           {
             key: 'Vercel-CDN-Cache-Control',

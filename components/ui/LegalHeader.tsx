@@ -1,8 +1,8 @@
-"use client"
+'use client';
 
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function LegalHeader() {
   return (
@@ -14,5 +14,5 @@ export default function LegalHeader() {
         </Link>
       </Button>
     </div>
-  )
+  );
 }

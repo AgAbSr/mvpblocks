@@ -77,52 +77,52 @@ const TestimonialsColumn = memo(function TestimonialsColumn(props: {
   duration?: number;
 }) {
   return (
-  <div className={props.className}>
-    <motion.div
-      animate={{
-        translateY: '-50%',
-      }}
-      transition={{
-        duration: props.duration || 10,
-        repeat: Infinity,
-        ease: 'linear',
-        repeatType: 'loop',
-      }}
-      className="flex flex-col gap-6"
-    >
-      {[
-        ...new Array(2).fill(0).map((_, index) => (
-          <React.Fragment key={index}>
-            {props.testimonials.map(({ text, imageSrc, name, username }) => (
-              <div
-                key={text}
-                className="border-border from-secondary/10 to-card relative w-full max-w-xs overflow-hidden rounded-3xl border bg-gradient-to-b p-10 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset]"
-              >
-                {/* rose color gradient */}
-                <div className="from-primary/10 to-card absolute -top-5 -left-5 -z-10 h-40 w-40 rounded-full bg-gradient-to-b blur-md" />
-                <div>{text}</div>
-                <div className="mt-5 flex items-center gap-2">
-                  <Image
-                    src={imageSrc}
-                    alt={name}
-                    height={40}
-                    width={40}
-                    className="h-10 w-10 rounded-full"
-                  />
-                  <div className="flex flex-col">
-                    <div className="leading-5 font-medium tracking-tight">
-                      {name}
+    <div className={props.className}>
+      <motion.div
+        animate={{
+          translateY: '-50%',
+        }}
+        transition={{
+          duration: props.duration || 10,
+          repeat: Infinity,
+          ease: 'linear',
+          repeatType: 'loop',
+        }}
+        className="flex flex-col gap-6"
+      >
+        {[
+          ...new Array(2).fill(0).map((_, index) => (
+            <React.Fragment key={index}>
+              {props.testimonials.map(({ text, imageSrc, name, username }) => (
+                <div
+                  key={text}
+                  className="border-border from-secondary/10 to-card relative w-full max-w-xs overflow-hidden rounded-3xl border bg-gradient-to-b p-10 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset]"
+                >
+                  {/* rose color gradient */}
+                  <div className="from-primary/10 to-card absolute -top-5 -left-5 -z-10 h-40 w-40 rounded-full bg-gradient-to-b blur-md" />
+                  <div>{text}</div>
+                  <div className="mt-5 flex items-center gap-2">
+                    <Image
+                      src={imageSrc}
+                      alt={name}
+                      height={40}
+                      width={40}
+                      className="h-10 w-10 rounded-full"
+                    />
+                    <div className="flex flex-col">
+                      <div className="leading-5 font-medium tracking-tight">
+                        {name}
+                      </div>
+                      <div className="leading-5 tracking-tight">{username}</div>
                     </div>
-                    <div className="leading-5 tracking-tight">{username}</div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </React.Fragment>
-        )),
-      ]}
-    </motion.div>
-  </div>
+              ))}
+            </React.Fragment>
+          )),
+        ]}
+      </motion.div>
+    </div>
   );
 });
 

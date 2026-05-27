@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { geist } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import { CopyButton } from '@/components/ui/copy-button';
-import LegalHeader from "@/components/ui/LegalHeader";
+import LegalHeader from '@/components/ui/LegalHeader';
 import { createMetadata } from '@/lib/metadata';
 import { JsonLd, breadcrumbSchema } from '@/lib/jsonld';
 import { siteConfig } from '@/config/site';

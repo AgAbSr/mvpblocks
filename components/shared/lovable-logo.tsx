@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react';
 
 const Lovable = (props: SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 121 122" fill="none">
@@ -9,7 +9,7 @@ const Lovable = (props: SVGProps<SVGSVGElement>) => (
       x="0"
       y="0"
       maskUnits="userSpaceOnUse"
-      style={{ maskType: "alpha" }}
+      style={{ maskType: 'alpha' }}
     >
       <path
         fill="url(#lovable__a)"

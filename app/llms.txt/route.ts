@@ -78,7 +78,8 @@ export async function GET() {
   return new Response(out.join('\n'), {
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800',
+      'Cache-Control':
+        'public, max-age=86400, s-maxage=31536000, stale-while-revalidate=604800',
       'Vercel-CDN-Cache-Control': 'public, max-age=31536000, immutable',
     },
   });
