@@ -296,6 +296,36 @@ code {
   animation: tile 2s ease-in-out infinite;
 }
 
+/* Testimonials marquee — compositor-driven vertical scroll.
+   The column duplicates its cards twice, so translating -50% loops seamlessly.
+   Runs on the GPU (transform only) so it never janks even while the main thread
+   is busy. Duration is set per-column via the --marquee-duration variable. */
+@keyframes testimonials-scroll-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.testimonials-marquee {
+  animation: testimonials-scroll-y var(--marquee-duration, 20s) linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.testimonials-marquee-track:hover .testimonials-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-marquee {
+    animation: none;
+  }
+}
+
 .bg-radial {
   --tw-gradient-position: in oklab;
   background-image: radial-gradient(var(--tw-gradient-stops));

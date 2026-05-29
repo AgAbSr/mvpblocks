@@ -45,7 +45,8 @@ export default function Gallery() {
           alt="Trending graphic 1"
           width={100}
           height={100}
-          className="brightness-[0.95] dark:opacity-5"
+          draggable={false}
+          className="brightness-[0.95] select-none dark:opacity-5"
           src="https://i.postimg.cc/tCMMGjDB/trending1.png"
         />
       </div>
@@ -54,7 +55,8 @@ export default function Gallery() {
           alt="Trending graphic 2"
           width={100}
           height={100}
-          className="brightness-[0.95] dark:opacity-5"
+          draggable={false}
+          className="brightness-[0.95] select-none dark:opacity-5"
           src="https://i.postimg.cc/zfm23FsW/trending2.png"
         />
       </div>
@@ -107,9 +109,10 @@ export default function Gallery() {
                   <Image
                     width={500}
                     height={500}
+                    draggable={false}
                     src="https://i.postimg.cc/j5dW4vFd/Mvpblocks.webp"
                     alt=""
-                    className="spin h-8 w-8"
+                    className="spin h-8 w-8 select-none"
                   />
                 </span>
               </div>

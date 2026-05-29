@@ -63,7 +63,7 @@ function AboutUsComponent() {
             alt="hero"
             height={720}
             width={1400}
-            className="mx-auto h-full rounded-2xl object-cover"
+            className="mx-auto h-full rounded-2xl object-cover select-none"
             draggable={false}
           />
         </ContainerScroll>

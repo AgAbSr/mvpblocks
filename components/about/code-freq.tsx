@@ -25,7 +25,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { fetchCodeFrequency } from '@/actions/githubgraphql';
+import { githubData } from '@/constants/github-data';
+
+// Code-frequency data is baked into constants/github-data.ts (regenerated via
+// `bun run github-contribution`). Reading it locally keeps this chart instant on
+// every page load instead of hitting the GitHub GraphQL API client-side.
+const codefreqArray = Object.entries(
+  githubData.codeFrequency as CodeFrequencyStats,
+)
+  .map(([date, values]) => ({
+    date,
+    additions: values.additions,
+    deletions: values.deletions,
+  }))
+  .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
 const chartConfig = {
   activity: {
@@ -42,37 +55,20 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function Codefreq() {
-  const [codefreq, setCodefreq] = React.useState<CodeFrequencyStats>({});
-
-  React.useEffect(() => {
-    const loadData = async () => {
-      const { codeFrequency } = await fetchCodeFrequency();
-      setCodefreq(codeFrequency);
-    };
-    loadData();
-  }, []);
-
   const [timeRange, setTimeRange] = React.useState('90d');
 
-  // Convert codefreq to array and filter
-  const codefreqArray = Object.entries(codefreq)
-    .map(([date, values]) => ({
-      date,
-      additions: values.additions,
-      deletions: values.deletions,
-    }))
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-  const filteredData = codefreqArray.filter((item) => {
-    const date = new Date(item.date);
-    const referenceDate = new Date();
+  // Reference point is the most recent commit in the dataset (not "today"), so the
+  // ranges stay meaningful even when the cached data is a few days old.
+  const filteredData = React.useMemo(() => {
+    if (codefreqArray.length === 0) return [];
+    const referenceDate = new Date(codefreqArray[codefreqArray.length - 1].date);
     let daysToSubtract = 90;
     if (timeRange === '30d') daysToSubtract = 30;
     else if (timeRange === '7d') daysToSubtract = 7;
     const startDate = new Date(referenceDate);
     startDate.setDate(referenceDate.getDate() - daysToSubtract);
-    return date >= startDate;
-  });
+    return codefreqArray.filter((item) => new Date(item.date) >= startDate);
+  }, [timeRange]);
 
   return (
     <Card className="from-secondary/40 to-secondary/0 bg-gradient-to-b shadow-[0px_-2px_50px_0px_#e91e631c_inset]">

@@ -2,7 +2,10 @@ import type { Metadata } from 'next';
 import Hero from '@/components/home/hero';
 import Features from '@/components/home/features';
 import Gallery from '@/components/home/gallery';
+import VideoFeature from '@/components/home/video-feature';
 import Testimonials from '@/components/home/testimonials';
+import Blogs from '@/components/home/blogs';
+import Contact from '@/components/home/contact';
 import { createMetadata } from '@/lib/metadata';
 import { JsonLd, breadcrumbSchema, faqSchema } from '@/lib/jsonld';
 import { siteConfig } from '@/config/site';
@@ -72,11 +75,17 @@ export default function Homepage() {
       <div className="[content-visibility:auto] [contain-intrinsic-size:1px_900px]">
         <Features />
       </div>
+      <div className="[content-visibility:auto] [contain-intrinsic-size:1px_600px]">
+        <VideoFeature />
+      </div>
       <div className="[content-visibility:auto] [contain-intrinsic-size:1px_1200px]">
         <Gallery />
       </div>
       <div className="[content-visibility:auto] [contain-intrinsic-size:1px_900px]">
         <Testimonials />
+      </div>
+      <div className="[content-visibility:auto] [contain-intrinsic-size:1px_700px]">
+        <Blogs />
       </div>
     </>
   );

@@ -312,3 +312,193 @@ function currencySymbol(currency: string) {
   };
   return symbols[currency.toUpperCase()] || `${currency} `;
 }
+
+// ─── Contact form emails ──────────────────────────────────────────────────────
+
+/** Escape user-supplied text before interpolating into email HTML. */
+function esc(value: unknown): string {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+const MVP_LOGO = 'https://i.postimg.cc/Bb5yKkFF/rose.webp';
+
+export interface ContactMeta {
+  ip?: string;
+  city?: string;
+  region?: string;
+  country?: string;
+  userAgent?: string;
+  browser?: string;
+  os?: string;
+  device?: string;
+  language?: string;
+  languages?: string;
+  timezone?: string;
+  screen?: string;
+  viewport?: string;
+  referrer?: string;
+  page?: string;
+  submittedAt?: string;
+}
+
+/** Confirmation email sent to the person who submitted the contact form. */
+export function generateContactConfirmationEmail({
+  name,
+  subject,
+  message,
+}: {
+  name: string;
+  subject?: string;
+  message: string;
+}) {
+  const firstName = esc(name.split(' ')[0] || name);
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Thanks for reaching out</title>
+</head>
+<body style="margin:0;padding:24px;background-color:#fdf2f6;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;color:#3f3f46;">
+  <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(233,30,99,0.10);">
+    <div style="background:linear-gradient(135deg,#f43f5e,#e91e63);padding:36px 32px;text-align:center;">
+      <img src="${MVP_LOGO}" width="48" height="48" alt="MVPBlocks" style="display:inline-block;margin-bottom:12px;" />
+      <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700;">Thanks for reaching out, ${firstName}! 👋</h1>
+      <p style="margin:8px 0 0;color:#ffe4ec;font-size:15px;">We've received your message and will get back to you soon.</p>
+    </div>
+
+    <div style="padding:32px;">
+      <p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#52525b;">
+        Hi ${firstName}, thank you for getting in touch with the <strong style="color:#e91e63;">MVPBlocks</strong> team.
+        A real human will review your message and reply to this email address shortly — usually within 1–2 business days.
+      </p>
+
+      <div style="background:#fdf2f6;border-left:3px solid #f43f5e;border-radius:8px;padding:18px 20px;margin-bottom:24px;">
+        <p style="margin:0 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#9f1239;font-weight:700;">Your message${subject ? ` · ${esc(subject)}` : ''}</p>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#3f3f46;white-space:pre-wrap;">${esc(message)}</p>
+      </div>
+
+      <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:#52525b;">
+        In the meantime, feel free to explore the docs or star us on GitHub — it genuinely helps a ton. ⭐
+      </p>
+
+      <div style="text-align:center;margin-bottom:8px;">
+        <a href="https://blocks.mvp-subha.me/docs/introduction" style="display:inline-block;background:linear-gradient(135deg,#f43f5e,#e91e63);color:#ffffff;text-decoration:none;font-weight:600;font-size:15px;padding:12px 28px;border-radius:8px;">Browse the docs</a>
+      </div>
+    </div>
+
+    <div style="background:#fafafa;padding:20px 32px;text-align:center;border-top:1px solid #f1f1f4;">
+      <p style="margin:0;font-size:12px;color:#a1a1aa;">MVPBlocks · Ship beautiful MVPs faster</p>
+      <p style="margin:6px 0 0;font-size:11px;color:#c4c4cc;">You're receiving this because you contacted us at blocks.mvp-subha.me</p>
+    </div>
+  </div>
+</body>
+</html>`;
+}
+
+/** Detailed notification email sent to the site admin. */
+export function generateContactAdminEmail({
+  name,
+  email,
+  subject,
+  message,
+  meta = {},
+}: {
+  name: string;
+  email: string;
+  subject?: string;
+  message: string;
+  meta?: ContactMeta;
+}) {
+  const location =
+    [meta.city, meta.region, meta.country].filter(Boolean).map(esc).join(', ') ||
+    'Unknown';
+
+  const rows: Array<[string, string]> = [
+    ['IP address', esc(meta.ip || 'Unknown')],
+    ['Location', location],
+    ['Browser', esc(meta.browser || 'Unknown')],
+    ['Operating system', esc(meta.os || 'Unknown')],
+    ['Device', esc(meta.device || 'Unknown')],
+    ['Timezone', esc(meta.timezone || 'Unknown')],
+    ['Language', esc(meta.language || 'Unknown')],
+    ['All languages', esc(meta.languages || 'Unknown')],
+    ['Screen', esc(meta.screen || 'Unknown')],
+    ['Viewport', esc(meta.viewport || 'Unknown')],
+    ['Came from page', esc(meta.page || 'Unknown')],
+    ['Referrer', esc(meta.referrer || 'Direct / none')],
+    ['Submitted at', esc(meta.submittedAt || 'Unknown')],
+    ['User agent', esc(meta.userAgent || 'Unknown')],
+  ];
+
+  const detailRows = rows
+    .map(
+      ([label, value], i) => `
+        <tr style="background:${i % 2 === 0 ? '#ffffff' : '#fafafa'};">
+          <td style="padding:10px 16px;font-size:12px;font-weight:600;color:#71717a;width:38%;vertical-align:top;border-bottom:1px solid #f1f1f4;">${label}</td>
+          <td style="padding:10px 16px;font-size:13px;color:#27272a;word-break:break-word;border-bottom:1px solid #f1f1f4;">${value}</td>
+        </tr>`,
+    )
+    .join('');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>New contact form submission</title>
+</head>
+<body style="margin:0;padding:24px;background-color:#fdf2f6;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;color:#3f3f46;">
+  <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(233,30,99,0.10);">
+    <div style="background:linear-gradient(135deg,#f43f5e,#e91e63);padding:32px;text-align:center;">
+      <img src="${MVP_LOGO}" width="44" height="44" alt="MVPBlocks" style="display:inline-block;margin-bottom:10px;" />
+      <h1 style="margin:0;color:#ffffff;font-size:22px;font-weight:700;">📬 New contact submission</h1>
+      <p style="margin:8px 0 0;color:#ffe4ec;font-size:14px;">Someone just reached out via the website</p>
+    </div>
+
+    <div style="padding:32px;">
+      <!-- Sender -->
+      <div style="background:#fdf2f6;border-radius:12px;padding:20px;margin-bottom:24px;">
+        <table style="width:100%;border-collapse:collapse;">
+          <tr>
+            <td style="padding:6px 0;font-size:13px;font-weight:600;color:#9f1239;width:90px;">Name</td>
+            <td style="padding:6px 0;font-size:14px;color:#27272a;">${esc(name)}</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0;font-size:13px;font-weight:600;color:#9f1239;">Email</td>
+            <td style="padding:6px 0;font-size:14px;"><a href="mailto:${esc(email)}" style="color:#e91e63;text-decoration:none;">${esc(email)}</a></td>
+          </tr>
+          <tr>
+            <td style="padding:6px 0;font-size:13px;font-weight:600;color:#9f1239;">Subject</td>
+            <td style="padding:6px 0;font-size:14px;color:#27272a;">${esc(subject || '—')}</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Message -->
+      <p style="margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#71717a;font-weight:700;">Message</p>
+      <div style="background:#ffffff;border:1px solid #f1f1f4;border-left:3px solid #f43f5e;border-radius:8px;padding:18px 20px;margin-bottom:28px;font-size:14px;line-height:1.7;color:#3f3f46;white-space:pre-wrap;">${esc(message)}</div>
+
+      <!-- Technical details -->
+      <p style="margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#71717a;font-weight:700;">🔎 Sender details</p>
+      <table style="width:100%;border-collapse:collapse;border:1px solid #f1f1f4;border-radius:8px;overflow:hidden;">
+        ${detailRows}
+      </table>
+
+      <div style="text-align:center;margin-top:28px;">
+        <a href="mailto:${esc(email)}${subject ? `?subject=${encodeURIComponent('Re: ' + subject)}` : ''}" style="display:inline-block;background:linear-gradient(135deg,#f43f5e,#e91e63);color:#ffffff;text-decoration:none;font-weight:600;font-size:15px;padding:12px 28px;border-radius:8px;">Reply to ${esc(name.split(' ')[0] || name)}</a>
+      </div>
+    </div>
+
+    <div style="background:#fafafa;padding:18px 32px;text-align:center;border-top:1px solid #f1f1f4;">
+      <p style="margin:0;font-size:11px;color:#a1a1aa;">Sent automatically from the MVPBlocks contact form</p>
+    </div>
+  </div>
+</body>
+</html>`;
+}

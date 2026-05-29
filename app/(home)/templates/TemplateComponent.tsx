@@ -66,7 +66,7 @@ function TemplateComponent() {
             className="mb-16 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
           >
             <a
-              href="https://aurasites.vercel.app"
+              href="https://sites.auradevs.co"
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-primary/25 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-medium transition-all duration-200 hover:scale-105 hover:shadow-lg"
@@ -162,7 +162,8 @@ const ProductCard = memo(function ProductCard({
           }
           alt={name}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          draggable={false}
+          className="object-cover transition-transform duration-500 group-hover:scale-105 select-none"
         />
         <p className="absolute right-2 bottom-2 rounded-full bg-black/30 px-3 py-1 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300">
           {price > 0 ? (

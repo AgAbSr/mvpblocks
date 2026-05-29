@@ -38,6 +38,8 @@ export function AuthorBadge({ username, className }: AuthorBadgeProps) {
           <AvatarImage
             src={`https://github.com/${username}.png`}
             alt={username}
+            draggable={false}
+            className="select-none"
           />
           <AvatarFallback className="text-[8px]">{initials}</AvatarFallback>
         </Avatar>

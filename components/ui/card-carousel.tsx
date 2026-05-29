@@ -118,8 +118,9 @@ export const CardCarousel: React.FC<CarouselProps> = ({
                         src={image.src}
                         width={500}
                         height={500}
-                        className="size-full rounded-xl"
+                        className="size-full rounded-xl select-none"
                         alt={image.alt}
+                        draggable={false}
                       />
                     </div>
                   </SwiperSlide>
@@ -131,8 +132,9 @@ export const CardCarousel: React.FC<CarouselProps> = ({
                         src={image.src}
                         width={200}
                         height={200}
-                        className="size-full rounded-xl"
+                        className="size-full rounded-xl select-none"
                         alt={image.alt}
+                        draggable={false}
                       />
                     </div>
                   </SwiperSlide>

@@ -1,5 +1,14 @@
 declare module 'tailwindcss/lib/util/flattenColorPalette';
 
+interface Testimonial {
+  text: string;
+  imageSrc: string;
+  name: string;
+  username: string;
+  platform: Platform;
+  postUrl: string;
+}
+
 type UserStats = Record<string, number>;
 
 type CodeFrequencyStats = Record<

@@ -11,7 +11,8 @@ export default function CTA() {
           <Image
             fill
             alt="Agent CTA Background"
-            className="absolute inset-0 object-cover object-right md:object-center"
+            draggable={false}
+            className="absolute inset-0 object-cover object-right md:object-center select-none"
             sizes="(max-width: 768px) 100vw, 1280px"
             src="https://i.postimg.cc/15qzD9gF/cta-bg.png"
           />

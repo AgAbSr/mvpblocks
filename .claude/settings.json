@@ -5,7 +5,9 @@
       "Read(//tmp/**)",
       "Bash(curl -s -X POST http://localhost:3000/api/demo-chat -H \"Content-Type: application/json\" -d '{\"messages\":[{\"id\":\"u1\",\"role\":\"user\",\"parts\":[{\"type\":\"text\",\"text\":\"Say hi in 5 words\"}]}]}' --max-time 60 -o /tmp/demo.bin -w \"HTTP %{http_code} | TTFB %{time_starttransfer}s | Size %{size_download}B\\\\n\")",
       "Bash(bunx tsc *)",
-      "Bash(echo \"EXIT $?\")"
+      "Bash(echo \"EXIT $?\")",
+      "Bash(ls -la components/about/)",
+      "Bash(ls -la components/about*)"
     ]
   }
 }

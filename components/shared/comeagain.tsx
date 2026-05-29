@@ -52,7 +52,8 @@ export default function EndSlider() {
                 height={500}
                 src="https://i.postimg.cc/fTZ1NW4f/metalrose.webp"
                 alt="Metal Rose"
-                className="mr-4 h-32 w-32"
+                draggable={false}
+                className="mr-4 h-32 w-32 select-none"
               />
               <span className={cn(slowDownAnimation && 'text-primary')}>
                 Ready. Set. Ship.

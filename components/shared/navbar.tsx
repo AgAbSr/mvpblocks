@@ -21,7 +21,7 @@ const NAV_ITEMS = [
   { name: 'Docs', link: '/docs/introduction' },
   { name: 'About', link: '/about' },
   { name: 'Templates', link: '/templates' },
-  { name: 'Hire Us', link: 'https://aura-devs.netlify.app' },
+  { name: 'Hire Me', link: 'https://cal.com/aura-devs/15min' },
   { name: 'Showcase', link: '/showcase' },
 ] as const;
 

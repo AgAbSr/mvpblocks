@@ -21,7 +21,8 @@ function FooterBase() {
                 height={40}
                 src="https://i.postimg.cc/j5dW4vFd/Mvpblocks.webp"
                 alt="logo"
-                className="h-8 w-8 rounded-full"
+                draggable={false}
+                className="h-8 w-8 rounded-full select-none"
               />
               <span className="bg-primary from-foreground to-primary via-rose-200 bg-clip-text text-2xl font-semibold text-transparent dark:bg-gradient-to-b">
                 Mvpblocks

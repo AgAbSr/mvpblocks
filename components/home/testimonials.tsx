@@ -4,127 +4,120 @@ import { motion, useInView } from 'framer-motion';
 import { geist } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { testimonials } from '@/constants/testimonials';
 
 const MOTION_HIDDEN = { opacity: 0, y: 50 } as const;
 const MOTION_VISIBLE = { opacity: 1, y: 0 } as const;
 const HEADER_TRANSITION = { duration: 0.5, delay: 0 } as const;
 const INVIEW_OPTS = { once: true, amount: 0.3 } as const;
 
-const testimonials = [
-  {
-    text: 'Mvpblocks has completely changed the way I build UIs. Copy-paste, done. No more design stress.',
-    imageSrc: 'https://i.pravatar.cc',
-    name: 'Arjun Mehta',
-    username: '@arjdev',
-  },
-  {
-    text: 'Honestly shocked at how smooth the animations and styling are out of the box. Just works.',
-    imageSrc: 'https://i.pravatar.cc',
-    name: 'Sara Lin',
-    username: '@sara.codes',
-  },
-  {
-    text: 'Our team launched a client site in 2 days using Mvpblocks. Saved so much time.',
-    imageSrc: 'https://i.pravatar.cc',
-    name: 'Devon Carter',
-    username: '@devninja',
-  },
-  {
-    text: 'Plugged a few blocks into our existing codebase and everything blended perfectly. Massive W.',
-    imageSrc: 'https://i.pravatar.cc',
-    name: 'Priya Shah',
-    username: '@priyacodes',
-  },
-  {
-    text: 'Found a beautiful hero section, dropped it into V0, tweaked copy, and shipped in 15 minutes.',
-    imageSrc: 'https://i.pravatar.cc',
-    name: 'Leo Martin',
-    username: '@leobuilds',
-  },
-  {
-    text: 'Mvpblocks helped us prototype multiple landing pages without writing CSS once.',
-    imageSrc: 'https://i.pravatar.cc',
-    name: 'Chloe Winters',
-    username: '@chloewinters',
-  },
-  {
-    text: 'As a solo founder, Mvpblocks lets me move fast without sacrificing design quality.',
-    imageSrc: 'https://i.pravatar.cc',
-    name: 'Ayaan Malik',
-    username: '@ayaan_dev',
-  },
-  {
-    text: 'Can’t believe how polished the components look. Clients are impressed every time.',
-    imageSrc: 'https://i.pravatar.cc',
-    name: 'Monica Reeves',
-    username: '@monicareeves',
-  },
-  {
-    text: 'This tool is a lifesaver when deadlines are tight. Drop in a block, tweak, and deploy.',
-    imageSrc: 'https://i.pravatar.cc',
-    name: 'James Roy',
-    username: '@jamesrdev',
-  },
-];
+// ─── Platform icons ──────────────────────────────────────────────────────────
 
-const firstColumn = testimonials.slice(0, 3);
-const secondColumn = testimonials.slice(3, 6);
-const thirdColumn = testimonials.slice(6, 9);
+const XIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-label="X (Twitter)"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+const LinkedInIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-label="LinkedIn"
+  >
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  </svg>
+);
+
+// ─── Types ───────────────────────────────────────────────────────────────────
+
+type Platform = 'x' | 'linkedin';
+
+// 11 posts → split 4 / 4 / 3 across columns
+const firstColumn = testimonials.slice(0, 4);
+const secondColumn = testimonials.slice(4, 8);
+const thirdColumn = testimonials.slice(8, 11);
+
+// ─── Column component ─────────────────────────────────────────────────────────
 
 const TestimonialsColumn = memo(function TestimonialsColumn(props: {
   className?: string;
-  testimonials: typeof testimonials;
+  testimonials: Testimonial[];
   duration?: number;
 }) {
   return (
-    <div className={props.className}>
-      <motion.div
-        animate={{
-          translateY: '-50%',
-        }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Infinity,
-          ease: 'linear',
-          repeatType: 'loop',
-        }}
-        className="flex flex-col gap-6"
+    <div className={cn('testimonials-marquee-track', props.className)}>
+      {/* Pure CSS, transform-only animation — runs on the compositor thread so it
+          stays perfectly smooth even when the main thread is busy. */}
+      <div
+        className="testimonials-marquee flex flex-col gap-6"
+        style={{ '--marquee-duration': `${props.duration ?? 20}s` } as React.CSSProperties}
       >
-        {[
-          ...new Array(2).fill(0).map((_, index) => (
-            <React.Fragment key={index}>
-              {props.testimonials.map(({ text, imageSrc, name, username }) => (
-                <div
-                  key={text}
-                  className="border-border from-secondary/10 to-card relative w-full max-w-xs overflow-hidden rounded-3xl border bg-gradient-to-b p-10 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset]"
+        {[...new Array(2)].map((_, index) => (
+          <React.Fragment key={index}>
+            {props.testimonials.map(
+              ({ text, imageSrc, name, username, platform, postUrl }) => (
+                <a
+                  key={`${postUrl}-${index}`}
+                  href={postUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group border-border from-secondary/10 to-card relative block w-full max-w-xs overflow-hidden rounded-3xl border bg-gradient-to-b p-10 no-underline shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] transition-all duration-200 hover:scale-[1.02] hover:shadow-md"
                 >
-                  {/* rose color gradient */}
+                  {/* Accent gradient glow */}
                   <div className="from-primary/10 to-card absolute -top-5 -left-5 -z-10 h-40 w-40 rounded-full bg-gradient-to-b blur-md" />
-                  <div>{text}</div>
+
+                  {/* Platform badge top-right */}
+                  <div className="absolute top-4 right-4 opacity-30 transition-opacity duration-200 group-hover:opacity-70">
+                    {platform === 'x' ? (
+                      <XIcon className="text-foreground h-3.5 w-3.5" />
+                    ) : (
+                      <LinkedInIcon className="h-3.5 w-3.5 text-[#0A66C2]" />
+                    )}
+                  </div>
+
+                  {/* Post text */}
+                  <p className="text-foreground/90 text-sm leading-relaxed">
+                    {text}
+                  </p>
+
+                  {/* Author row */}
                   <div className="mt-5 flex items-center gap-2">
                     <Image
                       src={imageSrc}
                       alt={name}
                       height={40}
                       width={40}
-                      className="h-10 w-10 rounded-full"
+                      draggable={false}
+                      className="h-10 w-10 rounded-full object-cover select-none"
+                      unoptimized
                     />
                     <div className="flex flex-col">
-                      <div className="leading-5 font-medium tracking-tight">
+                      <span className="text-foreground text-sm leading-5 font-medium tracking-tight">
                         {name}
-                      </div>
-                      <div className="leading-5 tracking-tight">{username}</div>
+                      </span>
+                      <span className="text-muted-foreground text-xs leading-5 tracking-tight">
+                        {username}
+                      </span>
                     </div>
                   </div>
-                </div>
-              ))}
-            </React.Fragment>
-          )),
-        ]}
-      </motion.div>
+                </a>
+              ),
+            )}
+          </React.Fragment>
+        ))}
+      </div>
     </div>
   );
 });
+
+// ─── Section ──────────────────────────────────────────────────────────────────
 
 const Testimonials = () => {
   const ref = useRef(null);
@@ -147,7 +140,8 @@ const Testimonials = () => {
 
   return (
     <section id="reviews" className="bg-background mb-24">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl mt-2">
+        {/* Header */}
         <motion.div
           ref={ref}
           initial={MOTION_HIDDEN}
@@ -160,8 +154,8 @@ const Testimonials = () => {
               type="button"
               className="group bg-background/50 hover:shadow-primary/[0.1] dark:border-border relative z-[60] mx-auto rounded-full border border-zinc-500/80 px-6 py-1 text-xs backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-100 md:text-sm"
             >
-              <div className="via-primary absolute inset-x-0 -top-px mx-auto h-0.5 w-1/2 bg-gradient-to-r from-transparent to-transparent shadow-2xl transition-all duration-500 group-hover:w-3/4"></div>
-              <div className="via-primary absolute inset-x-0 -bottom-px mx-auto h-0.5 w-1/2 bg-gradient-to-r from-transparent to-transparent shadow-2xl transition-all duration-500 group-hover:h-px"></div>
+              <div className="via-primary absolute inset-x-0 -top-px mx-auto h-0.5 w-1/2 bg-gradient-to-r from-transparent to-transparent shadow-2xl transition-all duration-500 group-hover:w-3/4" />
+              <div className="via-primary absolute inset-x-0 -bottom-px mx-auto h-0.5 w-1/2 bg-gradient-to-r from-transparent to-transparent shadow-2xl transition-all duration-500 group-hover:h-px" />
               <span className="relative">Testimonials</span>
             </button>
           </div>
@@ -171,13 +165,14 @@ const Testimonials = () => {
               geist.className,
             )}
           >
-            What our users say
+            What people are saying
           </h2>
           <p className="mt-5 text-center text-lg text-zinc-500">
-            From intuitive design to powerful features, our app has become an
-            essential tool for users around the world.
+            Developers around the world are building faster with MVPBlocks.
           </p>
         </motion.div>
+
+        {/* Scrolling columns */}
         <div className="my-16 flex max-h-[738px] justify-center gap-6 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]">
           <TestimonialsColumn testimonials={firstColumn} duration={15} />
           <TestimonialsColumn
@@ -191,6 +186,8 @@ const Testimonials = () => {
             duration={17}
           />
         </div>
+
+        {/* Share CTA */}
         <div className="-mt-8 flex justify-center">
           <button
             onClick={handleShareClick}
@@ -198,13 +195,7 @@ const Testimonials = () => {
           >
             <div className="via-primary/40 absolute inset-x-0 -top-px mx-auto h-px w-3/4 bg-gradient-to-r from-transparent to-transparent" />
             <div className="via-primary/40 absolute inset-x-0 -bottom-px mx-auto h-px w-3/4 bg-gradient-to-r from-transparent to-transparent" />
-            <svg
-              className="text-primary h-4 w-4"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
-            </svg>
+            <XIcon className="text-primary h-4 w-4" />
             Share your experience
           </button>
         </div>

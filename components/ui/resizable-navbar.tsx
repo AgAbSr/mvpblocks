@@ -104,7 +104,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         damping: 50,
       }}
       className={cn(
-        'relative z-[60] mx-auto hidden w-full max-w-6xl flex-row items-center justify-between self-start rounded-full bg-white/80 px-4 py-2 md:flex dark:bg-neutral-950',
+        'relative z-[60] mx-auto hidden w-full max-w-6xl flex-row items-center justify-between self-start rounded-full bg-white/80 px-4 py-2 xl:flex dark:bg-neutral-950',
         visible && 'bg-white/80 dark:bg-neutral-950/80',
         className,
       )}
@@ -121,7 +121,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className={cn(
-        'absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 md:flex md:space-x-2',
+        'absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 xl:flex xl:space-x-2',
         className,
       )}
     >
@@ -174,7 +174,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         damping: 50,
       }}
       className={cn(
-        'bg-background relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 md:hidden',
+        'bg-background relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 xl:hidden',
         visible && 'bg-white/80 dark:bg-neutral-950/80',
         className,
       )}
@@ -251,7 +251,8 @@ export const NavbarLogo = () => {
         height={32}
         src="https://i.postimg.cc/j5dW4vFd/Mvpblocks.webp"
         alt="logo"
-        className="h-8 w-8 rounded-full"
+        draggable={false}
+        className="h-8 w-8 rounded-full select-none"
       />
       <span className="bg-primary from-foreground to-primary via-rose-200 bg-clip-text text-2xl font-semibold text-transparent md:text-xl dark:bg-gradient-to-b">
         Mvpblocks

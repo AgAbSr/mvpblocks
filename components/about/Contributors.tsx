@@ -38,7 +38,8 @@ export default function Contributors() {
                 <img
                   src={contributor.avatar_url}
                   alt="Contributor Avatar"
-                  className="object-cover transition-all duration-500 ease-in-out group-hover:scale-110"
+                  draggable={false}
+                  className="object-cover transition-all duration-500 ease-in-out group-hover:scale-110 select-none"
                 />
               </CardContent>
             </Card>
