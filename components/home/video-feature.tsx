@@ -127,7 +127,7 @@ function VideoFeature() {
                   Jan Marshal
                 </a>
               </GlimpseTrigger>
-              <GlimpseContent className="from-secondary relative to-card bg-gradient-to-b shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] w-80">
+              <GlimpseContent className="from-secondary to-card relative w-80 rounded-2xl bg-gradient-to-b shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset]">
                 <div className="from-primary/10 to-card absolute -top-5 -left-5 -z-10 h-40 w-40 rounded-full bg-gradient-to-b blur-md" />
                 <GlimpseImage
                   src={featuredVideo.thumbnail}
@@ -158,9 +158,9 @@ function VideoFeature() {
           className="mx-auto mt-12 max-w-4xl"
         >
           <Dialog open={open} onOpenChange={setOpen}>
-            <div className="group border-border from-secondary/20 to-card relative overflow-hidden rounded-3xl border bg-gradient-to-b p-2 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] sm:p-3">
+            <div className="group border-border from-secondary/20 to-card relative flex flex-col overflow-hidden rounded-3xl border bg-gradient-to-b p-2 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] sm:p-3">
               {/* Accent glow */}
-              <div className="from-primary/20 absolute -top-16 left-1/2 -z-10 h-40 w-3/4 -translate-x-1/2 rounded-full bg-gradient-to-b to-transparent blur-3xl" />
+              <div className="from-primary/20 pointer-events-none absolute -top-16 left-1/2 z-10 h-40 w-3/4 -translate-x-1/2 rounded-full bg-gradient-to-b to-transparent blur-3xl" />
 
               <DialogTrigger asChild>
                 <button
@@ -179,17 +179,16 @@ function VideoFeature() {
                     priority={false}
                     draggable={false}
                     onError={() => setThumb(featuredVideo.thumbnailFallback)}
-                    className="object-cover transition-transform duration-500 select-none group-hover:scale-105"
+                    className="relative! object-cover transition-transform duration-500 select-none group-hover:scale-105"
                   />
                   {/* Cinematic gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/20" />
 
                   {/* YouTube badge */}
-                  <div className="bg-background text-foreground absolute top-4 left-4 flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium backdrop-blur">
+                  <div className="bg-background text-foreground absolute top-1 left-1 flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium backdrop-blur sm:top-4 sm:left-4 sm:gap-1.5 sm:px-3 sm:py-1 sm:text-xs">
                     <svg
                       preserveAspectRatio="xMidYMid"
-                      width="16"
-                      height="16"
+                      className="h-3.5 w-3.5 sm:h-4 sm:w-4"
                       viewBox="0 0 256 180"
                     >
                       <path
@@ -205,35 +204,34 @@ function VideoFeature() {
                   </div>
 
                   {/* Play button */}
-                  <span className="absolute top-1/2 left-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-b from-rose-500 to-rose-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] ring-4 ring-white/20 transition-all duration-300 group-hover:scale-110 group-hover:ring-white/30">
+                  <span className="absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-b from-rose-500 to-rose-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] ring-4 ring-white/20 transition-all duration-300 group-hover:scale-110 group-hover:ring-white/30 sm:h-20 sm:w-20">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-500/40" />
-                    <Play className="relative ml-1 h-8 w-8 fill-current" />
+                    <Play className="relative ml-1 h-6 w-6 fill-current sm:h-8 sm:w-8" />
                   </span>
-
-                  {/* Title + channel + stats overlay */}
-                  <div className="absolute right-0 bottom-0 left-0 p-5 text-left sm:p-6">
-                    <h3 className="line-clamp-2 text-lg font-semibold text-white sm:text-xl">
-                      {featuredVideo.title}
-                    </h3>
-                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-                      <span className="flex items-center gap-2">
-                        <Image
-                          src={featuredVideo.channelAvatar}
-                          alt={featuredVideo.channelName}
-                          width={28}
-                          height={28}
-                          draggable={false}
-                          unoptimized
-                          className="h-7 w-7 rounded-full border border-white/20 object-cover select-none"
-                        />
-                        <span className="text-sm font-medium text-white/90">
-                          {featuredVideo.channelName}
-                        </span>
-                      </span>
-                    </div>
-                  </div>
                 </button>
               </DialogTrigger>
+              {/* Title + channel + stats overlay */}
+              <div className="pb-1 pt-3 text-left px-2">
+                <h3 className="line-clamp-2 text-sm font-medium text-white sm:text-lg md:text-xl">
+                  {featuredVideo.title}
+                </h3>
+                <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2">
+                  <span className="flex items-center gap-2">
+                    <Image
+                      src={featuredVideo.channelAvatar}
+                      alt={featuredVideo.channelName}
+                      width={28}
+                      height={28}
+                      draggable={false}
+                      unoptimized
+                      className="h-6 w-6 rounded-full border border-white/20 object-cover select-none sm:h-7 sm:w-7"
+                    />
+                    <span className="text-xs font-medium text-white/90 sm:text-sm">
+                      {featuredVideo.channelName}
+                    </span>
+                  </span>
+                </div>
+              </div>
             </div>
 
             <DialogContent className="max-w-4xl overflow-hidden border-none bg-black p-0 shadow-2xl [&>button]:hidden">

@@ -219,6 +219,25 @@ const BlogCarousel = memo(function BlogCarousel() {
   const { selectedIndex, scrollSnaps, onDotClick, onPrev, onNext } =
     useEmblaControls(emblaApi);
 
+  // Restart the autoplay countdown on any manual control, so a near-due
+  // tick can't fire right after a click and shift the carousel twice.
+  const resetAutoplay = useCallback(() => autoplay.current.reset(), []);
+  const handlePrev = useCallback(() => {
+    onPrev();
+    resetAutoplay();
+  }, [onPrev, resetAutoplay]);
+  const handleNext = useCallback(() => {
+    onNext();
+    resetAutoplay();
+  }, [onNext, resetAutoplay]);
+  const handleDotClick = useCallback(
+    (index: number) => {
+      onDotClick(index);
+      resetAutoplay();
+    },
+    [onDotClick, resetAutoplay],
+  );
+
   return (
     <div className="mt-12">
       <div className="overflow-hidden" ref={emblaRef}>
@@ -238,7 +257,7 @@ const BlogCarousel = memo(function BlogCarousel() {
       <div className="mt-8 flex items-center justify-center gap-5">
         <button
           type="button"
-          onClick={onPrev}
+          onClick={handlePrev}
           aria-label="Previous blog"
           className="border-border bg-background hover:bg-primary/10 hover:border-primary/50 text-foreground flex h-10 w-10 items-center justify-center rounded-full border transition-colors active:scale-95"
         >
@@ -251,14 +270,14 @@ const BlogCarousel = memo(function BlogCarousel() {
               key={index}
               index={index}
               selected={index === selectedIndex}
-              onSelect={onDotClick}
+              onSelect={handleDotClick}
             />
           ))}
         </div>
 
         <button
           type="button"
-          onClick={onNext}
+          onClick={handleNext}
           aria-label="Next blog"
           className="border-border bg-background hover:bg-primary/10 hover:border-primary/50 text-foreground flex h-10 w-10 items-center justify-center rounded-full border transition-colors active:scale-95"
         >

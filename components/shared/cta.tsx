@@ -17,7 +17,7 @@ export default function CTA() {
             src="https://i.postimg.cc/15qzD9gF/cta-bg.png"
           />
           <div className="absolute inset-0 -top-32 flex flex-col items-center justify-center md:-top-40">
-            <h1 className="max-w-xs bg-gradient-to-r from-zinc-200/60 via-zinc-50 to-zinc-200/60 bg-clip-text text-center text-4xl font-medium tracking-tighter text-transparent md:max-w-xl md:text-7xl">
+            <h1 className="max-w-xs bg-gradient-to-r from-zinc-200/60 via-zinc-50 to-zinc-200/60 bg-clip-text text-center text-5xl font-medium tracking-tighter text-transparent md:max-w-xl md:text-7xl">
               Build. Customize. Deploy Quickly.
             </h1>
             <div className="absolute bottom-16 flex flex-col items-center justify-center gap-2">
